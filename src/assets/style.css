@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base{
+    :root{
+        --primary:#13181a;
+        --secondary:#222324;
+        --selects:rgba(124, 124, 124, 0.2);
+        --text-selects: #797979;
+        --terc: #6ddd2c;
+        --text: #fff;
+        --textbutton: #b40000;
+        --verdeportal: #97ce4c;
+        --azulrick: #00b0c7;
+        --amarelo-morty: #f0e144;
+        --background: rgba(32, 35, 41, 0.9);
+        --borda-neon: rgba(151, 206, 76, 0.5);
+    }
+}
