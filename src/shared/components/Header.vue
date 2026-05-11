@@ -18,7 +18,7 @@ setInterval(atualizarData, 1000);
 </script>
 
 <template>
-  <div class="flex justify-between bg-secondary py-7 px-10 items-center">
+  <div class="flex justify-between bg-secondary py-7 px-10 items-center border-b border-terc">
     <img src="@/assets/images/logo (2).svg" alt="" class="w-40" />
 
     <span class="text-white">{{ dataAtual }}</span>

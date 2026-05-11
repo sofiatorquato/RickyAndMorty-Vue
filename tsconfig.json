@@ -13,6 +13,7 @@
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "paths": {
+      "@images": ["./src/assets/images"],
       "@/*": ["./src/*"],
       "@components/*": ["./src/shared/components/*"],
       "@helpers/*": ["./src/shared/helpers/*"],
