@@ -5,7 +5,8 @@ export interface PersonagensParams{
   species?: string,
   gender?: string;
   image?: string,
-  
+  page?: number;
+
 }
 
 export interface RickyAndMortyData{

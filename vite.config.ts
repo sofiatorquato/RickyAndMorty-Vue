@@ -13,6 +13,7 @@ export default defineConfig({
   // base: '/exemplo/',
   resolve: {
     alias: {
+      '@images': fileURLToPath(new URL('./src/assets/images',  import.meta.url)),
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       '@components': fileURLToPath(new URL('./src/shared/components',  import.meta.url)),
       '@helpers': fileURLToPath(new URL('./src/shared/helpers',  import.meta.url)),
