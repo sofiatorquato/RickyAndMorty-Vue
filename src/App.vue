@@ -3,13 +3,13 @@ import Environment from '@components/config/Environment.vue';
 import Header from '@components/Header.vue';
 import Aside from '@components/Aside.vue';
 import { ref } from 'vue';
-import type { PersonagensParams,PersonagemCompleto } from './shared/types/paramsPersonas';
+import type { PersonagemCompleto } from './shared/types/paramsPersonas';
 import Modal from './shared/components/Modal.vue';
 
 const personaSelecionado = ref<PersonagemCompleto | null>(null);
 const modal = ref(false);
 
-const abrirModal = (persona: PersonagensParams):void => {
+const abrirModal = (persona: PersonagemCompleto):void => {
   personaSelecionado.value = persona; //resolveeeerrrr
   modal.value = true;
 };
