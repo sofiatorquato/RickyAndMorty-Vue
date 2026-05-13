@@ -18,7 +18,7 @@ onMounted(() => {
     <h1 class="text-terc font-audiowide text-3xl mb-6">Personagens</h1>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-      <PersonagemCard v-for="persona in store.dadosApi?.results" :key="persona.id" :personagem="persona"/>
+      <PersonagemCard v-for="persona in store.dadosApi?.results" :key="persona.id" :personagem="persona" @clicar="$emit('selecionar', $event)"/>
       </div>
       <div>
         <Paginacao v-if="store.dadosApi" :info="store.dadosApi.info" :atual-page="store.paginaAtual" @mudar-page="store.buscar"/>

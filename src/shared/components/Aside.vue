@@ -5,7 +5,7 @@ import { usePersonagemStore } from '../stores/filtros';
 const store = usePersonagemStore();
 
 const filterStatus = ref<string[]>(['Todos os status', 'Alive', 'Dead', 'Unknown']);
-const filterSpecies = ref<string[]>(['Todas as espécies','Animal','Human','Alien','Robot','Mythological Creature','Poopybutthole','Cronenberg']);
+const filterSpecies = ref<string[]>(['Todas as espécies','Animal','Human','Alien','Robot','Mythological Creature','Poopybutthole','Cronenberg','Disease']);
 const filterGenre = ref<string[]>(['Todos os gêneros', 'Female', 'Male']);
 
 

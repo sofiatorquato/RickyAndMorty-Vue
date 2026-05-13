@@ -6,7 +6,7 @@
 @layer base{
     :root{
         --primary:#13181a;
-        --secondary:#222324;
+        --secondary:rgb(34, 35, 36);
         --selects:rgba(124, 124, 124, 0.2);
         --text-selects: #797979;
         --terc: rgb(109, 221, 44);

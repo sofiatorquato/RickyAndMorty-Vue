@@ -21,6 +21,7 @@ export const usePersonagemStore = defineStore('personagem', () => {
       status: statusSelecionado.value !== 'Todos os status' ? statusSelecionado.value : undefined,
       species: especieSelecionada.value !== 'Todas as espécies' ? especieSelecionada.value : undefined,
       gender: generoSelecionado.value !== 'Todos os gêneros' ? generoSelecionado.value : undefined,
+
     };
 
     const res = await buscarPersonagens(filtros); //

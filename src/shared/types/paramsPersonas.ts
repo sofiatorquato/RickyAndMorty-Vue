@@ -6,7 +6,22 @@ export interface PersonagensParams{
   gender?: string;
   image?: string,
   page?: number;
+  episode? :string[] | number[],
 
+}
+
+export interface PersonagemCompleto extends PersonagensParams {
+  id: number
+  image: string
+  episode: string[] | number[]
+  origin: {
+    name: string
+    url?: string
+  }
+  location: {
+    name: string
+    url?: string
+  }
 }
 
 export interface RickyAndMortyData{
@@ -16,5 +31,5 @@ export interface RickyAndMortyData{
     next: string | null,
     prev: string | null
   };
-  results: PersonagensParams[]
+  results: PersonagemCompleto[]
 }
