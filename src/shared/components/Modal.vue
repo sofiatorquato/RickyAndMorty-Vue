@@ -12,11 +12,11 @@ defineEmits(['fecharModal']);
 
 <template>
   <Teleport to="body">
-    <div v-if="exibir" class="fixed inset-0 z-[9999] flex items-center justify-center bg-secondary" @click.self="$emit('fecharModal')">
+    <div v-if="exibir" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-lg" @click.self="$emit('fecharModal')">
       <section class="relative w-full max-w-md overflow-hidden rounded-xl bg-[#1a1a1a] text-white shadow-2xl">
 
         <div class="relative h-72">
-            <button class="btn-fechar-modal absolute right-3 top-3 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors" @click="$emit('fecharModal',$event)"> &times;
+            <button class="btn-fechar-modal absolute right-3 top-3 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors" @click="$emit('fecharModal')"> &times;
             </button>
 
             <img :src="persona.image" :alt="persona.name" class="h-full w-full object-cover">

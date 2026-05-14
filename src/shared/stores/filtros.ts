@@ -2,6 +2,8 @@ import { defineStore } from 'pinia';
 import { ref, watch } from 'vue';
 import { buscarPersonagens } from '../services/api';
 import type { RickyAndMortyData, PersonagensParams } from '../types/paramsPersonas';
+import { uiStore } from './uiState';
+
 
 export const usePersonagemStore = defineStore('personagem', () => {
   const pesquisa = ref('');
@@ -12,20 +14,44 @@ export const usePersonagemStore = defineStore('personagem', () => {
 
   const dadosApi = ref<RickyAndMortyData | null>(null);
 
-  const buscar = async (pagina: number = 1): Promise <void> => {
-    paginaAtual.value = pagina;
+  const buscar = async (pagina: number = 1): Promise<void> => {
+    const ui = uiStore();
 
-    const filtros: PersonagensParams = {
+    try {
+      ui.loading = true;
+      dadosApi.value = null;
+      ui.notFound = false;
+      paginaAtual.value = pagina;
+
+     const filtros: PersonagensParams = {
       page: paginaAtual.value,
       name: pesquisa.value || undefined,
       status: statusSelecionado.value !== 'Todos os status' ? statusSelecionado.value : undefined,
       species: especieSelecionada.value !== 'Todas as espécies' ? especieSelecionada.value : undefined,
       gender: generoSelecionado.value !== 'Todos os gêneros' ? generoSelecionado.value : undefined,
 
-    };
+     };
 
-    const res = await buscarPersonagens(filtros); //
-    if (res) dadosApi.value = res;
+      const res = await buscarPersonagens(filtros);
+      if (res) dadosApi.value = res;
+      else ui.notFound = true;
+
+    }
+
+    catch {
+      console.error('');
+      if (!ui.isOnline) {
+      }
+
+      else {
+        ui.notFound = true;
+      }
+      }
+
+     finally {
+      ui.loading = false;
+    }
+
   };
 
   const limparFiltros = (): void => {

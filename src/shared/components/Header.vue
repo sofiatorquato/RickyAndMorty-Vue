@@ -5,9 +5,7 @@ const dataAtual = ref('');
 
 function atualizarData(): void {
   const agora = new Date();
-  dataAtual.value = agora
-    .toLocaleString('pt-BR', { dateStyle: 'full', timeStyle: 'medium' })
-    .replace(',', ' • ');
+  dataAtual.value = agora.toLocaleString('pt-BR', { dateStyle: 'full', timeStyle: 'medium' }).replace(',', ' • ');
 }
 
 onMounted(() => {
@@ -15,6 +13,7 @@ onMounted(() => {
 });
 
 setInterval(atualizarData, 1000);
+
 </script>
 
 <template>
