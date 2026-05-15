@@ -1,12 +1,33 @@
 <script setup lang="ts">
 import type { PersonagemCompleto } from '../types/paramsPersonas';
+import { ref, computed } from 'vue';
 
-defineProps<{
+const props = defineProps<{
   exibir: boolean;
   persona: PersonagemCompleto;
 }>();
 
 defineEmits(['fecharModal']);
+
+const infosPersonas = ref([
+  { label: 'Origem', valor: props.persona.origin.name },
+  { label: 'Última localização', valor: props.persona.location.name },
+  { label: 'Espécie', valor: props.persona.species },
+  { label: 'Gênero', valor: props.persona.gender },
+  { label: 'Aparece em', valor: `${props.persona.episode.length} ${props.persona.episode.length > 1 ? 'episódios': 'episódio'}` },
+
+]);
+
+const coresStatus: Record<string, string> = {
+  'Alive': 'text-white bg-green-700',
+  'Dead': 'text-white bg-red-700',
+  'Unknown': 'text-white bg-text-gray-500',
+};
+
+const classStatus = computed((): string => {
+  return coresStatus[props.persona.status as keyof typeof coresStatus] || 'bg-gray-400';
+});
+
 
 </script>
 
@@ -23,35 +44,18 @@ defineEmits(['fecharModal']);
             <div class="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[#1a1a1a] to-transparent p-5 pt-20">
                 <h2 class="text-3xl font-bold">{{persona.name}}</h2>
                 <div class="mt-2 flex items-center gap-3">
-                    <span class="rounded px-2 py-0.5 text-xs font-bold uppercase" >
+                    <span class="rounded px-2 py-0.5 text-xs font-bold uppercase" :class="[classStatus]">
                         {{persona.status}}
                     </span>
                     <span class="text-sm text-gray-300">{{persona.species}} · {{persona.gender}}</span>
                 </div>
             </div>
         </div>
-        <!--criar uma const computada puxando a descrição e os vlores de cada persona (que nem feito na legenda)
-        aplicar v-for nas li e ul-->
+
         <ul class="space-y-0 p-5">
-            <li class="flex justify-between border-b border-gray-800 py-3 text-sm">
-                <span class="text-gray-400">Origem</span>
-                <strong class="font-medium">{{persona.origin.name}}</strong>
-            </li>
-            <li class="flex justify-between border-b border-gray-800 py-3 text-sm">
-                <span class="text-gray-400">Última localização</span>
-                <strong class="font-medium">{{persona.location.name}}</strong>
-            </li>
-            <li class="flex justify-between border-b border-gray-800 py-3 text-sm">
-                <span class="text-gray-400">Espécie</span>
-                <strong class="font-medium">{{persona.species}}</strong>
-            </li>
-            <li class="flex justify-between border-b border-gray-800 py-3 text-sm">
-                <span class="text-gray-400">Gênero</span>
-                <strong class="font-medium">{{persona.gender}}</strong>
-            </li>
-            <li class="flex justify-between py-3 text-sm">
-                <span class="text-gray-400">Aparece em</span>
-                <strong class="font-medium">{{persona.episode.length}} {{ persona.episode.length>1? 'episódios': 'episódio' }}</strong>
+            <li v-for="(info, index) in infosPersonas" :key="info.label" class="flex justify-between border-b border-gray-800 py-3 text-sm"  :class="['flex justify-between py-3 text-sm', index !==infosPersonas.length-1? 'border-b border-gray-800' : '']">
+              <span> {{ info.label }}</span>
+              <strong>{{ info.valor }}</strong>
             </li>
         </ul>
     </section>

@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { usePersonagemStore } from '../stores/filtros';
+import { uiStore } from '../stores/uiState';
+
+const ui = uiStore();
 
 const store = usePersonagemStore();
 
@@ -18,7 +21,9 @@ const legend = ref([
 </script>
 
 <template>
-  <aside class="flex flex-col w-80 h-full bg-secondary p-6 gap-6 border-r border-terc shadow-lg overflow-y-auto">
+  <div v-if="ui.menuOpen" class="fixed inset-0 z-40 bg-black/40 lg:hidden top-[110px]" @click="ui.menuHamb">
+  </div>
+  <aside :class="['flex flex-col w-80 h-[calc(100vh-110px)] bg-secondary p-6 gap-6 border-r border-terc shadow-lg overflow-y-auto z-50 ','fixed top-[110px] left-0 lg:static lg:h-full lg:translate-x-0', ui.menuOpen ? 'translate-x-0' : '-translate-x-full']">
 
     <section class="flex flex-col gap-2">
       <label for="busca" class="text-terc font-audiowide text-xl tracking-wider">

@@ -7,6 +7,11 @@ export const uiStore = defineStore('ui', () => {
   const isOnline = ref(navigator.onLine);
   const loading = ref(false);
   const notFound = ref(false);
+  const menuOpen = ref(false);
+
+  const menuHamb = (): void => {
+    menuOpen.value = !menuOpen.value;
+  };
 
   window.addEventListener('offline', () => {
     isOnline.value = false;
@@ -18,7 +23,10 @@ export const uiStore = defineStore('ui', () => {
   return {
     isOnline,
     loading,
-    notFound
+    notFound,
+    menuHamb,
+    menuOpen
+
   };
 });
 

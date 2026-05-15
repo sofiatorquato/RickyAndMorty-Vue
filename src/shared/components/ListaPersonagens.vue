@@ -33,8 +33,6 @@ onMounted(() => {
   </section>
 
 
-
-
  <section v-else class="p-8">
     <h1 class="text-terc font-audiowide text-3xl mb-6">Personagens</h1>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">

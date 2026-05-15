@@ -7,6 +7,7 @@ export async function buscarPersonagens(filtros:PersonagensParams={}):Promise<Ri
   try {
     const { data } = await api.get('/character', { params: filtros });
     return data;
+
   } catch (error) {
     console.error('Erro ao buscar personagens:', error);
     return null;
