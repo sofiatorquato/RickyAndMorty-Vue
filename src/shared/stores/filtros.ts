@@ -60,7 +60,6 @@ export const usePersonagemStore = defineStore('personagem', () => {
     especieSelecionada.value = 'Todas as espécies';
     generoSelecionado.value = 'Todos os gêneros';
     paginaAtual.value = 1;
-    buscar();
   };
 
   let timer: ReturnType<typeof setTimeout>;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { usePersonagemStore } from '../stores/filtros';
 import { uiStore } from '../stores/uiState';
 
@@ -8,8 +8,8 @@ const ui = uiStore();
 const store = usePersonagemStore();
 
 const filterStatus = ref<string[]>(['Todos os status', 'Alive', 'Dead', 'Unknown']);
-const filterSpecies = ref<string[]>(['Todas as espécies','Animal','Human','Alien','Robot','Mythological Creature','Poopybutthole','Cronenberg','Disease']);
-const filterGenre = ref<string[]>(['Todos os gêneros', 'Female', 'Male']);
+const filterSpecies = ref<string[]>(['Todas as espécies','Animal','Human','Alien','Robot','Mythological Creature','Poopybutthole','Cronenberg','Disease','Unknown']);
+const filterGenre = ref<string[]>(['Todos os gêneros', 'Female', 'Male', 'Unknown']);
 
 
 const legend = ref([
@@ -17,6 +17,16 @@ const legend = ref([
   { label: 'Morto', icon: '💀' },
   { label: 'Desconhecido', icon: '❓' }
 ]);
+
+
+const ordemAlfabetica = computed(() => {
+  const opcEspecies = filterSpecies.value.filter((todos) => todos !== 'Todas as espécies');
+
+  opcEspecies.sort((a, b) => a.localeCompare(b));
+
+  return ['Todas as espécies', ...opcEspecies];
+
+});
 
 </script>
 
@@ -48,7 +58,7 @@ const legend = ref([
 
       <div class="relative flex flex-col">
         <select v-model="store.especieSelecionada" class="bg-[#2a2d2e] text-text-selects p-3 rounded-lg border border-transparent focus:border-terc outline-none appearance-none cursor-pointer font-gill">
-          <option v-for="specie in filterSpecies" :key="specie" :value="specie" class="bg-secondary text-terc">
+          <option v-for="specie in ordemAlfabetica" :key="specie" :value="specie" class="bg-secondary text-terc">
             {{ specie }}
           </option>
         </select>

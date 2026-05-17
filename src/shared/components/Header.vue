@@ -35,6 +35,6 @@ setInterval(atualizarData, 1000);
       <img src="@/assets/images/logo (2).svg" alt="" class="w-40" />
     </div>
 
-    <span class="text-white text-sm md:text-base">{{ dataAtual }}</span>
+    <span class="text-white text-sm md:text-base text-right ">{{ dataAtual }}</span>
   </div>
 </template>
