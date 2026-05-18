@@ -9,7 +9,7 @@ const props = defineProps<{
 
 defineEmits(['fecharModal']);
 
-const infosPersonas = ref([
+const infosPersonas = computed(()=>[
   { label: 'Origem', valor: props.persona.origin.name },
   { label: 'Última localização', valor: props.persona.location.name },
   { label: 'Espécie', valor: props.persona.species },

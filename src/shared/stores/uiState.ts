@@ -20,12 +20,15 @@ export const uiStore = defineStore('ui', () => {
     isOnline.value = true;
   });
 
+  const aguardar = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms));
+
   return {
     isOnline,
     loading,
     notFound,
     menuHamb,
-    menuOpen
+    menuOpen,
+    aguardar
 
   };
 });

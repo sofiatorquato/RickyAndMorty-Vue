@@ -8,8 +8,6 @@ const emit = defineEmits<{
   (e: 'clicar', personagem: PersonagensParams): void
 }>();
 
-
-
 </script>
 
 <template>

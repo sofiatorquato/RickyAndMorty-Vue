@@ -19,7 +19,6 @@ export const usePersonagemStore = defineStore('personagem', () => {
 
     try {
       ui.loading = true;
-      dadosApi.value = null;
       ui.notFound = false;
       paginaAtual.value = pagina;
 
@@ -29,10 +28,13 @@ export const usePersonagemStore = defineStore('personagem', () => {
       status: statusSelecionado.value !== 'Todos os status' ? statusSelecionado.value : undefined,
       species: especieSelecionada.value !== 'Todas as espécies' ? especieSelecionada.value : undefined,
       gender: generoSelecionado.value !== 'Todos os gêneros' ? generoSelecionado.value : undefined,
+      };
 
-     };
+      const [res] = await Promise.all([
+        buscarPersonagens(filtros),
+        ui.aguardar(1000)
+      ]);
 
-      const res = await buscarPersonagens(filtros);
       if (res) dadosApi.value = res;
       else ui.notFound = true;
 

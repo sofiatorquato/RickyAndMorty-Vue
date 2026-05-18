@@ -22,7 +22,7 @@ const legend = ref([
 const ordemAlfabetica = computed(() => {
   const opcEspecies = filterSpecies.value.filter((todos) => todos !== 'Todas as espécies');
 
-  opcEspecies.sort((a, b) => a.localeCompare(b));
+  opcEspecies.sort((x, y) => x.localeCompare(y));
 
   return ['Todas as espécies', ...opcEspecies];
 
@@ -85,7 +85,7 @@ const ordemAlfabetica = computed(() => {
       </h2>
 
       <div class="flex flex-col gap-4 font-gill">
-        <div v-for="legenda in legend" :key="legenda.label"  class="flex items-center gap-3 text-white">
+        <div v-for="legenda in legend" :key="legenda.label" class="flex items-center gap-3 text-white">
           <span>{{ legenda.icon }}</span>
           <span>{{ legenda.label }}</span>
         </div>

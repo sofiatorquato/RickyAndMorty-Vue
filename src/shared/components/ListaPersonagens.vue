@@ -17,19 +17,23 @@ onMounted(() => {
 </script>
 
 <template>
-  <section v-if="ui.loading" class="flex flex-col justify-items items-center p-40">
-    <img src="@images/loading.png" alt="">
-    <p class="text-azulrick font-audiowide text-xl">VIAJANDO ENTRE DIMENSÕES...</p>
-  </section>
+  <section
+    v-if="ui.loading || !ui.isOnline || ui.notFound"
+    class="flex flex-col items-center justify-center min-h-[calc(100vh-150px)] w-full p-6 text-center transition-all">
+    <template v-if="ui.loading">
+      <img src="@images/loading.png" alt="Carregando..." class="w-full max-w-[300px] lg:max-w-[500px] h-auto mb-6 animate-nave-voando">
+      <p class="text-azulrick font-audiowide text-xl lg:text-3xl">VIAJANDO ENTRE DIMENSÕES...</p>
+    </template>
 
-  <section v-else-if="!ui.isOnline" class="flex flex-col justify-items items-center p-40">
-    <img :src="error" alt="">
-    <p class="text-azulrick font-audiowide text-xl">UBBA LUBBA DUB DUB! SUA CONEXÃO ESTÁ PÉSSIMA!</p>
-  </section>
+    <template v-else-if="!ui.isOnline">
+      <img :src="error" alt="Erro de conexão" class="w-full max-w-[300px] lg:max-w-[500px] h-auto mb-6">
+      <p class="text-azulrick font-audiowide text-xl lg:text-3xl uppercase">Ubba Lubba Dub Dub! Sua conexão está péssima!</p>
+    </template>
 
-  <section v-else-if="ui.notFound" class="flex flex-col justify-items items-center p-40">
-    <img src="@images/loading.png" alt="">
-    <p class="text-azulrick font-audiowide text-xl">NÃO FOI ENCONTRADO NINGUÉM EM NENHUMA DIMENSÃO!</p>
+    <template v-else-if="ui.notFound">
+      <img src="@images/loading.png" alt="Personagem não encontrado" class="w-full max-w-[300px] lg:max-w-[500px] h-auto mb-6">
+      <p class="text-azulrick font-audiowide text-xl lg:text-3xl max-w-2xl uppercase">Não foi encontrado ninguém em nenhuma dimensão!</p>
+    </template>
   </section>
 
 
